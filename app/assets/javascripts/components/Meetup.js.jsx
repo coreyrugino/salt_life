@@ -46,12 +46,10 @@ class Meetup extends React.Component {
         Top 10 Tags
         <div className='row'>
           {tags}
-
         </div>
         <h1 className='center-text'>Group Meetups</h1>
         <div className='row'>
           {groups}
-
         </div>
         <div>
           <form onSubmit={this.submitGroup} >

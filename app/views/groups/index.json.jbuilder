@@ -2,7 +2,7 @@ json.groups @groups do |group|
   json.id group.id
   json.name group.name
   json.date group.date
-  json.time group.time
+  json.time group.time.strftime('%I:%M%p')
   json.location group.location
   json.info group.info
   json.creator User.find(group.creator_id)
