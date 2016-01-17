@@ -1,2 +1,6 @@
 .container
-  = react_component('ShowGroup', group: @group, time: @time, category_list: @categories)
+  = react_component('ShowGroup', group: @group, time: @time, category_list: @group.category_list.join(', '))
+  %br
+  = link_to 'Join', user_group_path(@group), method: 'put', class: 'btn'
+  %p
+    There are #{@group.users.count} people attending

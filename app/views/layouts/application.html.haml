@@ -6,6 +6,12 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    .nav-wrapper.row
+      %a.brand-logo.col.offset-s3.s4{:href => "/"}
+        %img{:src => 'http://i139.photobucket.com/albums/q315/Natasha_Mays/saltlife2.jpg_zpsfs85bgdd.gif', :alt => 'Salt Life'}
+      %ul#nav-mobile.right.hide-on-med-and-down
+        %li
+          = link_to 'Sign out', destroy_user_session_path, method: 'delete'
     %p.notice= notice
     %p.alert= alert
     = yield

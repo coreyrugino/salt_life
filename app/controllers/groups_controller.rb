@@ -1,13 +1,12 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.all.order(created_at: :desc)
-    @tags = ActsAsTaggableOn::Tag.most_used(10)
+    @tags = ActsAsTaggableOn::Tag.most_used(12)
   end
 
   def show
     @group = Group.find(params[:id])
     @time = @group.time.strftime('%I:%M:%S')
-    @categories = @group.category_list
   end
 
   def edit
@@ -17,7 +16,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     @group.update(group_params)
-    render 'group'
+    render :group
   end
 
   def create

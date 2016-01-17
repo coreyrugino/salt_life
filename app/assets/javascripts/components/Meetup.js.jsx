@@ -3,7 +3,9 @@ class Meetup extends React.Component {
     super(props);
     this.refreshPage = this.refreshPage.bind(this)
     this.submitGroup = this.submitGroup.bind(this)
-    this.state = {tags: [], groups: []};
+    this.newGroup = this.newGroup.bind(this)
+    this.toggleForm = this.toggleForm.bind(this)
+    this.state = {tags: [], groups: [], newGroup: false};
   }
   componentDidMount(){
     this.refreshPage()
@@ -30,8 +32,30 @@ class Meetup extends React.Component {
       groups.push(data.group)
       this.setState({groups})
     })
-
   }
+
+  newGroup(){
+    if(this.state.newGroup){
+      return(
+        <div>
+          <form onSubmit={this.submitGroup} >
+            <input type= "text" ref= "groupName" placeholder="Group Name"/>
+            <input type= "date" ref= "groupDate" placeholder="Group Date"/>
+            <input type= "time" ref= "groupTime" placeholder="Group Time"/>
+            <input type= "text" ref= "groupLocation" placeholder="Group Location"/>
+            <input type= "text" ref= "groupInfo" placeholder="Group Info"/>
+            <input type= "text" ref= "groupCategory" placeholder="Categories, Seperate by comma"/>
+            <button type= "submit" className= "btn" >Submit</button>
+          </form>
+        </div>
+      )
+    }
+  }
+
+  toggleForm(){
+    this.setState({newGroup: !this.state.newGroup})
+  }
+
   render(){
     let groups = this.state.groups.map(group => {
       let key = `group-${group.id}`;
@@ -43,25 +67,18 @@ class Meetup extends React.Component {
     })
     return(
       <div>
-        Top 10 Tags
+        <p className='tagprops center'>Top 12 Tags</p>
         <div className='row'>
           {tags}
         </div>
-        <h1 className='center-text'>Group Meetups</h1>
+        <h1 className='center'>Group Meetups</h1>
+        <div>
+          <button onClick={this.toggleForm} className= "btn" >New Event</button>
+          {this.newGroup()}
+        </div>
+        <br />
         <div className='row'>
           {groups}
-        </div>
-        <div>
-          <form onSubmit={this.submitGroup} >
-            <input type= "text" ref= "groupName" placeholder="Group Name"/>
-            <input type= "date" ref= "groupDate" placeholder="Group Date"/>
-            <input type= "time" ref= "groupTime" placeholder="Group Time"/>
-            <input type= "text" ref= "groupLocation" placeholder="Group Location"/>
-            <input type= "text" ref= "groupInfo" placeholder="Group Info"/>
-            <input type= "text" ref= "groupCategory" placeholder="Categories, Seperate by comma"/>
-            <button type= "submit" className= "btn" >Submit</button>
-          </form>
-
         </div>
       </div>
     )

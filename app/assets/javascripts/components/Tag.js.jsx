@@ -9,7 +9,7 @@ class Tag extends React.Component {
 
   render(){
     return (
-      <div className='col s2 card center'>
+      <div className='col s2 center'>
         <p>{this.props.name}</p>
       </div>
     )

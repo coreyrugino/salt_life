@@ -4,7 +4,7 @@ class ShowGroup extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this)
     this.editForm = this.editForm.bind(this)
     this.editGroup = this.editGroup.bind(this)
-    this.state = { editForm: false }
+    this.state = { editForm: false, group: {name: this.props.group.name, date: this.props.group.date, time: this.props.time, location: this.props.group.location, info: this.props.group.info, category_list: this.props.category_list} }
 
   }
   toggleEdit(){
@@ -38,7 +38,7 @@ class ShowGroup extends React.Component {
         time: this.refs.groupTime.value, location: this.refs.groupLocation.value,
         info: this.refs.groupInfo.value, category_list: this.refs.groupCategory.value}}
     }).success( data => {
-      this.setState({ editForm: false });
+      this.setState({ editForm: false, group: {name: data.group.name, date: data.group.date, time: data.group.time, location: data.group.location, info: data.group.info, category_list: data.group.categories} });
     });
   }
 
@@ -46,15 +46,15 @@ class ShowGroup extends React.Component {
     return(
       <div>
         <h1>
-          {this.props.group.name}
+          {this.state.group.name}
         </h1>
 
         <h3>
-          {this.props.group.date}<br />
-          {this.props.time}<br />
-          {this.props.group.location}<br />
-          {this.props.group.info}<br />
-          {this.props.category_list}
+        {this.state.group.date}<br />
+        {this.state.group.time}<br />
+        {this.state.group.location}<br />
+        {this.state.group.info}<br />
+        {this.state.group.category_list}
         </h3>
         <button className='btn' onClick={this.toggleEdit}>Edit</button>
         {this.editForm()}

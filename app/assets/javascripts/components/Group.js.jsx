@@ -16,8 +16,9 @@ class Group extends React.Component {
 
   render(){
     return(
-      <div className='card col s10 offset-s1' onClick={this.groupPage}>
-        <a href={`/groups/${this.props.id}`} className='group-click'>{this.props.name}</a>
+      <div className='row card col s12' onClick={this.groupPage}>
+        <a href={`/groups/${this.props.id}`} className='group-click col s6'>{this.props.name}</a>
+        <p className='col s6 right-align'>Tags:{this.props.categories}</p>
       </div>
     )
   }
