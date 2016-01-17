@@ -15,7 +15,7 @@ class ShowGroup extends React.Component {
     if(this.state.editForm){
       return(
         <div>
-          <form onSubmit={this.editGroup} >
+          <form className='formevent' onSubmit={this.editGroup} >
             <input type= "text" ref= "groupName" defaultValue={this.props.group.name}/>
             <input type= "date" ref= "groupDate" defaultValue={this.props.group.date}/>
             <input type= "time" ref= "groupTime" defaultValue={this.props.time}/>

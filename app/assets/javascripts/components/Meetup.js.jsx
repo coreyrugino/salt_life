@@ -30,7 +30,7 @@ class Meetup extends React.Component {
     }).success(data => {
       let groups = this.state.groups
       groups.push(data.group)
-      this.setState({groups})
+      this.setState({groups, newGroup: false})
     })
   }
 
@@ -38,7 +38,7 @@ class Meetup extends React.Component {
     if(this.state.newGroup){
       return(
         <div>
-          <form onSubmit={this.submitGroup} >
+          <form className='formevent' onSubmit={this.submitGroup} >
             <input type= "text" ref= "groupName" placeholder="Group Name"/>
             <input type= "date" ref= "groupDate" placeholder="Group Date"/>
             <input type= "time" ref= "groupTime" placeholder="Group Time"/>
